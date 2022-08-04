@@ -7,8 +7,33 @@ function createEl(x) {
 	return document.createElement(x);
 }
 
-let res;
 let id = "37f5a5d9f91b889ab0138447d19d66ff";
+let lat, lon;
+
+function success(pos) {
+	const crd = pos.coords;
+	lat = crd.latitude;
+	lon = crd.longitude;
+	onLoadLocation();
+}
+
+let coord = navigator.geolocation.getCurrentPosition(success);
+let tempData;
+
+async function onLoadLocation() {
+	try {
+		let data = await fetch(
+			`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${id}&units=metric`
+		);
+		tempData = await data.json();
+		display(tempData, tempData.name);
+		console.log(tempData);
+	} catch (e) {
+		console.log(e);
+	}
+}
+
+let res;
 async function getdata() {
 	let name = document.getElementById("name").value;
 	try {
@@ -110,50 +135,3 @@ function showTime() {
 	datediv.innerText = m + "/" + d + "/" + y;
 	setTimeout(showTime, 1000);
 }
-
-showTime();
-
-// {
-//     "coord": {
-//         "lon": 77.6833,
-//         "lat": 29.4667
-//     },
-//     "weather": [
-//         {
-//             "id": 804,
-//             "main": "Clouds",
-//             "description": "overcast clouds",
-//             "icon": "04n"
-//         }
-//     ],
-//     "base": "stations",
-//     "main": {
-//         "temp": 27.02,
-//         "feels_like": 30.27,
-//         "temp_min": 27.02,
-//         "temp_max": 27.02,
-//         "pressure": 1002,
-//         "humidity": 85,
-//         "sea_level": 1002,
-//         "grnd_level": 975
-//     },
-//     "visibility": 10000,
-//     "wind": {
-//         "speed": 2.74,
-//         "deg": 99,
-//         "gust": 4.48
-//     },
-//     "clouds": {
-//         "all": 99
-//     },
-//     "dt": 1659625300,
-//     "sys": {
-//         "country": "IN",
-//         "sunrise": 1659571844,
-//         "sunset": 1659620400
-//     },
-//     "timezone": 19800,
-//     "id": 1262332,
-//     "name": "Muzaffarnagar",
-//     "cod": 200
-// }
