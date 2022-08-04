@@ -80,7 +80,7 @@ function display(res, name) {
 
 	let divT2 = createEl("div");
 	let temp2 = createEl("p");
-	temp2.innerText = "Feels like " + res.main.feels_like;
+	temp2.innerText = "Feels like " + res.main.feels_like + " C";
 
 	let temp3 = createEl("p");
 	temp3.innerText = "Overcast " + res.weather[0].main;
@@ -91,7 +91,7 @@ function display(res, name) {
 	hum.innerText = `Humidity ${res.main.humidity}%`;
 
 	vis = createEl("p");
-	vis.innerText = `visibility ${Math.floor(res.visibility / 1000)}.0 K/m`;
+	vis.innerText = `visibility ${Math.floor(res.visibility / 1000)}.0 Km`;
 
 	let dis = createEl("p");
 	dis.innerText = ` ${res.weather[0].description}`;
