@@ -133,6 +133,6 @@ function showTime() {
 	mm = mm < 10 ? "0" + mm : mm;
 	ss = ss < 10 ? "0" + ss : ss;
 	timediv.innerText = hh + ":" + mm + ":" + ss + " " + session;
-	datediv.innerText = m + "/" + d + "/" + y;
+	datediv.innerText = d + "/" + m + "/" + y;
 	setTimeout(showTime, 1000);
 }
