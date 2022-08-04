@@ -53,6 +53,7 @@ function getWeather() {
 }
 
 function display(res, name) {
+	showTime();
 	let map = document.getElementById("gmap_canvas");
 	let con = document.getElementById("text");
 	con.innerHTML = null;
